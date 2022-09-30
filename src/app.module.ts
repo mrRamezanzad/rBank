@@ -5,6 +5,7 @@ import { UsersModule } from "./users/users.module";
 import { AuthController } from "./auth/auth.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule } from "@nestjs/config";
+import { User } from "./users/user.entity";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { ConfigModule } from "@nestjs/config";
       username: process.env.DB_USERNAME,
       password: String(process.env.DB_PASSWORD),
       logger: "debug",
-      entities: [],
+      autoLoadEntities: true,
       synchronize: true,
       retryAttempts: 20,
       retryDelay: 3000,
