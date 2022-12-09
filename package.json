@@ -27,6 +27,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "class-validator": "^0.13.2",
     "g": "^2.0.1",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",

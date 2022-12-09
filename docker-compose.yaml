@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+  postgres: 
+    container_name: 'postgres'
+    image: 'postgres:14.5'
+    restart: unless-stopped
+    ports: 
+      - 5432:5432
+    volumes:
+      - ./__database:/var/lib/postgresql/data
+    networks:
+      - 'rbank_network'
+    environment:
+      - POSTGRES_PASSWORD=admin
+
+  rbank:
+    container_name: 'rbank'
+    image: 'rbank:v1'
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - 'postgres'
+    volumes:
+      -  ./node_modules
+    networks:
+      - 'rbank_network'
+
+networks:
+  rbank_network:
+    external: true
